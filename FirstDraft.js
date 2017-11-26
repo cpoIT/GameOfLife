@@ -11,12 +11,14 @@ function gameBoard (height) {
   
   for (var i = 0; i < height; i++) {
     var nextRow = row.slice();
-    if (Math.ceil(Math.random() * 9) > 3) {
+    if (Math.ceil(Math.random() * 9) > 3) { // always maxes at 10: change game board size?
       nextRow[Math.ceil(Math.random() * 9)] = cellColor; //'\u2B55'
     }
     ground.push(nextRow);
   }
   console.log (ground);
+  
+  //Change game board size? Change game board size to start small, and increase x + 1 & y + 1 each turn.
   
   var cellCount = 0;
   var cellPositions = [];
@@ -36,7 +38,9 @@ function gameBoard (height) {
   console.log('life form exists at:')
   console.log(cellPositions);
 
-  //Cell Neighbors: add 1 if direction is also red cell
+  // Cell Neighbors: add 1 if direction is also red cell
+  // Need to move this up further 
+  // Need to change all values to false initially & if neighbor is red, return true.
   var N = 0;
   var NE = 0;
   var E = 0;
@@ -46,7 +50,7 @@ function gameBoard (height) {
   var W = 0;
   var NW = 0;
 
-  //Location of neighbor based on cell
+  //Location of neighbor based on (original) cell(s). Need to change to assess all life form locations.
   var locationN = (x , (y - 1));
   var locationNE = ((x + 1) , (y - 1));
   var locationE = ((x + 1) , y);
@@ -59,13 +63,15 @@ function gameBoard (height) {
   //console.log(locationN); // always return 9 (= x+y)
 
   // If neighbor is red add 1 to count total neighbors
+  // Started with just accessing North.
+  // Need to change to if North is red, then North = true;
   if (locationN = '\u2B55') {
     N + 1;
   }
 
   var meaningOfLife = [cell, N, NE, E, SE, S, SW, W, NW];
   var allNeighbors = [N, NE, E, SE, S, SW, W, NW];
-  var totalNeighbors = (N+NE+E+SE+S+SW+W+NW);
+  var totalNeighbors = (N+NE+E+SE+S+SW+W+NW); //
   
   if (cell = true) {
     cellColor = '\u2B55';
@@ -77,7 +83,11 @@ function gameBoard (height) {
         cell = true;
       }
     }
-  } return 'Will your world survive?'
+  } 
+  // Need to add alert: 'Press Enter to see if you world survived another day.' 
+  // Add counter for number of days.
+  
+  return 'Will your world survive?'
 
   //console.log('total neighbors: ' + totalNeighbors);
   //console.log(N);
